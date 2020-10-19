@@ -1,0 +1,945 @@
+{
+  "author": "Erigatohishima",
+  "description": "Pins the position and position offsets along with angles,opacity and target objs scale\n\n0.0.2-Added the pin check so obj that are pinned dont activate until the actions used",
+  "extensionNamespace": "",
+  "fullName": "PinSuite",
+  "name": "Pin",
+  "shortDescription": "Pin various things",
+  "tags": "uttility",
+  "version": "0.0.2",
+  "eventsFunctions": [],
+  "eventsBasedBehaviors": [
+    {
+      "description": "This \"Pins\" a obj to another obj,syncing positions,angles and the opacitys together",
+      "fullName": "Pinplus",
+      "name": "PinPlus",
+      "objectType": "Sprite",
+      "eventsFunctions": [
+        {
+          "description": "",
+          "fullName": "",
+          "functionType": "Action",
+          "name": "doStepPostEvents",
+          "sentence": "",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::PropertyisPinned"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "MettreXY"
+                      },
+                      "parameters": [
+                        "Object",
+                        "=",
+                        "Object.Behavior::PropertyX()+Object.Behavior::PropertyOffsetX()",
+                        "=",
+                        "Object.Behavior::PropertyY()+Object.Behavior::PropertyOffsetY()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Pin::PinPlus::PropertyisScaled"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ChangeScaleWidth"
+                      },
+                      "parameters": [
+                        "Object",
+                        "=",
+                        "Object.Behavior::PropertyScaleX()"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ChangeScaleHeight"
+                      },
+                      "parameters": [
+                        "Object",
+                        "=",
+                        "Object.Behavior::PropertyScaleY()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Pin::PinPlus::PropertyisOpacity"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Opacity"
+                      },
+                      "parameters": [
+                        "Object",
+                        "=",
+                        "Object.Behavior::PropertyOpacity()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Pin::PinPlus::PropertyisAngle"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SetAngle"
+                      },
+                      "parameters": [
+                        "Object",
+                        "=",
+                        "Object.Behavior::PropertyAngle()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "longDescription": "",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "longDescription": "",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "Pin::PinPlus",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Updates the data for the pin variables",
+          "fullName": "UpdatePinVariables",
+          "functionType": "Action",
+          "name": "Update",
+          "sentence": "_PARAM0_ Update _PARAM1_",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "GetArgumentAsNumber(\"Scale\")",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyisScaled"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "yes"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "GetArgumentAsNumber(\"Angle\")",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyisAngle"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "yes"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "GetArgumentAsNumber(\"Opacity\")",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyisOpacity"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "yes"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyX"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Target.X()"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyY"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Target.Y()"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyOffsetX"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "GetArgumentAsNumber(\"OffsetX\")"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyOffsetY"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "GetArgumentAsNumber(\"OffsetY\")"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyScaleX"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Target.ScaleX()"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyScaleY"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Target.ScaleY()"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyOpacity"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Target.Opacity()"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyAngle"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Target.Angle()"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::PinPlus::SetPropertyisPinned"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "yes"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "longDescription": "",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "longDescription": "",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "Pin::PinPlus",
+              "type": "behavior"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "OffsetX variable",
+              "longDescription": "",
+              "name": "OffsetX",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "OffsetY variable",
+              "longDescription": "",
+              "name": "OffsetY",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "TargetObj",
+              "longDescription": "",
+              "name": "Target",
+              "optional": false,
+              "supplementaryInformation": "Sprite",
+              "type": "objectList"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Scale enabled",
+              "longDescription": "",
+              "name": "Scale",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Angle enabled",
+              "longDescription": "",
+              "name": "Angle",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Opacity enabled",
+              "longDescription": "",
+              "name": "Opacity",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            }
+          ],
+          "objectGroups": []
+        }
+      ],
+      "propertyDescriptors": [
+        {
+          "value": "",
+          "type": "Boolean",
+          "label": "Is the obj pinned to anything",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "isPinned"
+        },
+        {
+          "value": "",
+          "type": "Boolean",
+          "label": "is the obj pin scaled",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "isScaled"
+        },
+        {
+          "value": "",
+          "type": "Boolean",
+          "label": "is the obj pin angle",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "isAngle"
+        },
+        {
+          "value": "",
+          "type": "Boolean",
+          "label": "is the obj pin opacity",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "isOpacity"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "The X position that the obj shoulkd be pinned too",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "X"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "The Y position that the obj should be pinned too",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "Y"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "The offset in the X direction",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "OffsetX"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "the offset in the y direction",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "OffsetY"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "the width scale",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "ScaleX"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "the height scale",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "ScaleY"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "the target opacity",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "Opacity"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "the target angle",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "Angle"
+        }
+      ]
+    },
+    {
+      "description": "This is the basic version of Pin that can pin any obj(Objs that have positions) to another object",
+      "fullName": "Pin",
+      "name": "Pin",
+      "objectType": "",
+      "eventsFunctions": [
+        {
+          "description": "",
+          "fullName": "",
+          "functionType": "Action",
+          "name": "doStepPostEvents",
+          "sentence": "",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::Pin::PropertyisPinned"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "MettreXY"
+                  },
+                  "parameters": [
+                    "Object",
+                    "=",
+                    "Object.Behavior::PropertyX()+Object.Behavior::PropertyOffsetX()",
+                    "=",
+                    "Object.Behavior::PropertyY()+Object.Behavior::PropertyOffsetY()"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "longDescription": "",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "longDescription": "",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "Pin::Pin",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Updates the data for the pin variables",
+          "fullName": "UpdatePinVariables",
+          "functionType": "Action",
+          "name": "Update",
+          "sentence": "_PARAM0_ Update _PARAM1_",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::Pin::SetPropertyY"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Target.Y()"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::Pin::SetPropertyX"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Target.X()"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::Pin::SetPropertyOffsetX"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "GetArgumentAsNumber(\"OffsetX\")"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::Pin::SetPropertyOffsetY"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "GetArgumentAsNumber(\"OffsetY\")"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Pin::Pin::SetPropertyisPinned"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "yes"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "longDescription": "",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "longDescription": "",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "Pin::Pin",
+              "type": "behavior"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "OffsetX variable",
+              "longDescription": "",
+              "name": "OffsetX",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "OffsetY variable",
+              "longDescription": "",
+              "name": "OffsetY",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "TargetObj",
+              "longDescription": "",
+              "name": "Target",
+              "optional": false,
+              "supplementaryInformation": "Sprite",
+              "type": "objectList"
+            }
+          ],
+          "objectGroups": []
+        }
+      ],
+      "propertyDescriptors": [
+        {
+          "value": "",
+          "type": "Boolean",
+          "label": "Is the obj pinned to anything",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "isPinned"
+        },
+        {
+          "value": "",
+          "type": "Boolean",
+          "label": "Should the obj scale with the pinned objs scale variables",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "isScaled"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "The X position that the obj shoulkd be pinned too",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "X"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "The Y position that the obj should be pinned too",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "Y"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "The offset in the X direction",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "OffsetX"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "the offset in the y direction",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "OffsetY"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "the width scale",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "ScaleX"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "the height scale",
+          "description": "",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "ScaleY"
+        }
+      ]
+    }
+  ]
+}

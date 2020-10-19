@@ -1,0 +1,1509 @@
+{
+  "author": "grymmjack",
+  "description": "Align objects on the scene relatively to the window (or screen size).\n\n**Be sure to put your object on a layer for which the camera position was not moved.**\n\nActions provided are:\n\n* ToSceneCentered: horizontally and vertically centered in scene\n* ToSceneTop: vertically to the top in scene\n* ToSceneMiddle: vertically to the middle in scene\n* ToSceneBottom: vertically to the bottom in scene\n* ToSceneLeft: horizontally to the left in scene\n* ToSceneRight: horizontally to the right in scene\n* ToSceneCenter: horizontally to the center in scene\n* ToScreenCentered: horizontally and vertically centered in screen\n* ToScreenTop: vertically to the top in screen\n* ToScreenMiddle: vertically to the middle in screen\n* ToScreenBottom: vertically to the bottom in screen\n* ToScreenLeft: horizontally to the left in screen\n* ToScreenRight: horizontally to the right in screen\n* ToScreenCenter: horizontally to the center in screen\n*Compound Objs",
+  "extensionNamespace": "",
+  "fullName": "Align object on the screen",
+  "name": "AlignObject",
+  "shortDescription": "Align objects on the scene relatively to the window (or screen size).",
+  "tags": "align, alignment, center",
+  "version": "1.1",
+  "eventsFunctions": [
+    {
+      "description": "Align object to horizontal center in screen",
+      "fullName": "[Screen] Align  horizontally center",
+      "functionType": "Action",
+      "name": "ToScreenCenter",
+      "sentence": "[Screen] Align _PARAM1_ horizontally center",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "ScreenWidth()/2 - ObjectToAlign.Width()/2"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to horizontal center in scene",
+      "fullName": "[Scene] Align  horizontally center",
+      "functionType": "Action",
+      "name": "ToSceneCenter",
+      "sentence": "[Scene] Align _PARAM1_ horizontally center",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "SceneWindowWidth()/2 - ObjectToAlign.Width()/2"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to horizontal right in screen",
+      "fullName": "[Scene] Align horizontally right",
+      "functionType": "Action",
+      "name": "ToScreenRight",
+      "sentence": "[Screen] Align _PARAM1_ horizontally right ",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "ScreenWidth() - ObjectToAlign.Width()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to horizontal right in scene",
+      "fullName": "[Scene] Align  horizontally right",
+      "functionType": "Action",
+      "name": "ToSceneRight",
+      "sentence": "[Scene] Align _PARAM1_ horizontally right",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "SceneWindowWidth() - ObjectToAlign.Width()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to horizontal left in screen",
+      "fullName": "[Screen] Align  horizontally left",
+      "functionType": "Action",
+      "name": "ToScreenLeft",
+      "sentence": "[Screen] Align _PARAM1_ horizontally left",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to horizontal left in scene",
+      "fullName": "[Scene] Align  horizontally left",
+      "functionType": "Action",
+      "name": "ToSceneLeft",
+      "sentence": "[Scene] Align _PARAM1_ horizontally left",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Center object in screen horizontally and vertically",
+      "fullName": "[Screen] Center  horizontally and vertically",
+      "functionType": "Action",
+      "name": "ToScreenCentered",
+      "sentence": "[Screen] Center _PARAM1_  horizontally and vertically",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreXY"
+              },
+              "parameters": [
+                "ObjectToCenter",
+                "=",
+                "ScreenWidth()/2 - ObjectToCenter.Width()/2",
+                "=",
+                "ScreenHeight()/2 - ObjectToCenter.Height()/2"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToCenter",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Center object in scene horizontally and vertically",
+      "fullName": "[Scene] Center horizontally and vertically",
+      "functionType": "Action",
+      "name": "ToSceneCentered",
+      "sentence": "[Scene] Center _PARAM1_ horizontally and vertically",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreXY"
+              },
+              "parameters": [
+                "ObjectToCenter",
+                "=",
+                "SceneWindowWidth()/2 - ObjectToCenter.Width()/2",
+                "=",
+                "SceneWindowHeight()/2 - ObjectToCenter.Height()/2"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToCenter",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to vertical bottom of screen",
+      "fullName": "[Screen] Align  to vertical bottom",
+      "functionType": "Action",
+      "name": "ToScreenBottom",
+      "sentence": "[Screen] Align _PARAM1_ to vertical bottom",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "ScreenHeight() - ObjectToAlign.Height()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to vertical bottom of scene",
+      "fullName": "[Scene] Align  to vertical bottom",
+      "functionType": "Action",
+      "name": "ToSceneBottom",
+      "sentence": "[Scene] Align _PARAM1_ to vertical bottom",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "SceneWindowHeight() - ObjectToAlign.Height()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to vertical middle of screen",
+      "fullName": "[Screen] Align  to vertical middle",
+      "functionType": "Action",
+      "name": "ToScreenMiddle",
+      "sentence": "[Screen] Align _PARAM1_ to vertical middle",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "ScreenHeight()/2 - ObjectToAlign.Height()/2"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to vertical middle of scene",
+      "fullName": "[Scene] Align  to vertical middle",
+      "functionType": "Action",
+      "name": "ToSceneMiddle",
+      "sentence": "[Scene] Align _PARAM1_ to vertical middle",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "SceneWindowHeight()/2 - ObjectToAlign.Height()/2"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to vertical top of screen",
+      "fullName": "[Screen] Align  to top",
+      "functionType": "Action",
+      "name": "ToScreenTop",
+      "sentence": "[Screen] Align _PARAM1_ to top",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Align object to vertical top of scene",
+      "fullName": "[Scene] Align  to top",
+      "functionType": "Action",
+      "name": "ToSceneTop",
+      "sentence": "[Scene] Align _PARAM1_ to top",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "ObjectToAlign",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Object to align",
+          "longDescription": "",
+          "name": "ObjectToAlign",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Do a CompoundPin",
+      "fullName": "[Compound] Align",
+      "functionType": "Action",
+      "name": "ComPoundPin",
+      "sentence": "[Compound _PARAM3_] Align _PARAM2_ to _PARAM1_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": true,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "GetArgumentAsString(\"Group\")",
+                "=",
+                "\"Scene\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"TopRight\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneTop"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneRight"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"TopLeft\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneTop"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneLeft"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"BottomLeft\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneBottom"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneLeft"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"BottomRight\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneBottom"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneRight"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"BottomMiddle\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneBottom"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneMiddle"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"TopMiddle\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneTop"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneMiddle"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"MiddleLeft\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneLeft"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneMiddle"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"MiddleRight\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneRight"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneMiddle"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"DeadCenter\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToSceneCentered"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": true,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "GetArgumentAsString(\"Group\")",
+                "=",
+                "\"Screen\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"TopRight\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenTop"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenRight"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"TopLeft\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenTop"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenLeft"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"BottomLeft\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenBottom"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenLeft"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"BottomRight\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenBottom"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenRight"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"BottomMiddle\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenBottom"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenMiddle"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"TopMiddle\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenTop"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenMiddle"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"MiddleLeft\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenLeft"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenMiddle"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"MiddleRight\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenRight"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenMiddle"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "GetArgumentAsString(\"Type\")",
+                    "=",
+                    "\"DeadCenter\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "AlignObject::ToScreenCentered"
+                  },
+                  "parameters": [
+                    "",
+                    "Obj",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Type of Pin",
+          "longDescription": "",
+          "name": "Type",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Target Obj",
+          "longDescription": "",
+          "name": "Obj",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "objectList"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "The group range",
+          "longDescription": "",
+          "name": "Group",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": []
+}

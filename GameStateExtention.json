@@ -1,0 +1,209 @@
+{
+  "author": "Erigatohishima",
+  "description": "This adds a Js obj Game state object to the project allowing the developer to run various events depending on the current state and Sub state of the game \n\n0.0.2-Upgraded to use the new \"OnFirstSceneLoad\" function",
+  "extensionNamespace": "",
+  "fullName": "GameState",
+  "name": "GameState",
+  "shortDescription": "Handles Game States",
+  "tags": "Infastructure",
+  "version": "0.0.2",
+  "eventsFunctions": [
+    {
+      "description": "",
+      "fullName": "",
+      "functionType": "Action",
+      "name": "onFirstSceneLoaded",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "window.GatoState={\nCurrentState:\"\",\nPreviousState:\"\",\nSubState:\"\",\nChangeState:function(state){\n    var tempstateholder;\n    tempstateholder=GatoState.CurrentState\n    GatoState.PreviousState=tempstateholder;\n    GatoState.CurrentState=state;\n},\nChangeSubState:function(x){\n    GatoState.SubState=x\n}\n}\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Returns true if the Current Game state is equal to the fuction parameter",
+      "fullName": "",
+      "functionType": "Condition",
+      "name": "SubStateIs",
+      "sentence": "Current SubState is _PARAM1_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Event=eventsFunctionContext.getArgument(\"State\");\nif(Event==GatoState.SubState){\n    eventsFunctionContext.returnValue=true;\n}",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "State",
+          "longDescription": "",
+          "name": "State",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Returns true if the Current Game state is equal to the fuction parameter",
+      "fullName": "",
+      "functionType": "Condition",
+      "name": "StateIs",
+      "sentence": "Current state is _PARAM1_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Event=eventsFunctionContext.getArgument(\"State\");\nif(Event==GatoState.CurrentState){\n    eventsFunctionContext.returnValue=true;\n}",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "State",
+          "longDescription": "",
+          "name": "State",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Set the current Sub state of the game",
+      "fullName": "Set the Sub State",
+      "functionType": "Action",
+      "name": "SetSubState",
+      "sentence": "Set SubState to _PARAM1_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Event=eventsFunctionContext.getArgument(\"State\");\nGatoState.ChangeSubState(Event);",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "State",
+          "longDescription": "",
+          "name": "State",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Set the current state of the game",
+      "fullName": "Set the State",
+      "functionType": "Action",
+      "name": "SetState",
+      "sentence": "Set State to _PARAM1_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Event=eventsFunctionContext.getArgument(\"State\");\nGatoState.ChangeState(Event);",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "State",
+          "longDescription": "",
+          "name": "State",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Returns the current SubState",
+      "fullName": "GetSubState",
+      "functionType": "StringExpression",
+      "name": "CurrentSubState",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "eventsFunctionContext.returnValue=GatoState.SubState;\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Returns the last state before the current state",
+      "fullName": "GetOldState",
+      "functionType": "StringExpression",
+      "name": "PreviousState",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "eventsFunctionContext.returnValue=GatoState.PreviousState;\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Returns the current State",
+      "fullName": "GetState",
+      "functionType": "StringExpression",
+      "name": "CurrentState",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "eventsFunctionContext.returnValue=GatoState.CurrentState;\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": []
+}

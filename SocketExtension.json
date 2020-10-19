@@ -1,0 +1,294 @@
+{
+  "author": "Erigatohishima",
+  "description": "High level wrapper for Socket.io that allows it to easily be used in Gdevelop",
+  "extensionNamespace": "",
+  "fullName": "Socket.io",
+  "name": "SocketIo",
+  "shortDescription": "High level wrapper for Socket.io",
+  "tags": "Network",
+  "version": "0.1",
+  "eventsFunctions": [
+    {
+      "description": "",
+      "fullName": "",
+      "functionType": "Action",
+      "name": "onFirstSceneLoaded",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "window.GatoSockets={\n    Event:'',\n    LastData:'',\n    SocketId:'',\n    ShortId:'',\n    IO:''\n};",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Connect to a particular socket.io Server",
+      "fullName": "Connect",
+      "functionType": "Action",
+      "name": "Connect",
+      "sentence": "Conect to _PARAM1_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "\nvar Server=eventsFunctionContext.getArgument(\"Server\")\nGatoSockets.IO=io(Server);\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Server Url",
+          "longDescription": "",
+          "name": "Server",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "",
+      "fullName": "Emit",
+      "functionType": "Action",
+      "name": "Emit",
+      "sentence": "Emit _PARAM1_ data _PARAM2_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Type=eventsFunctionContext.getArgument(\"Type\");\r\nvar Data=eventsFunctionContext.getArgument(\"Data\")\r\nif(GatoSockets.IO!=null){\r\n    GatoSockets.IO.emit(Type,Data);\r\n}\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Type",
+          "longDescription": "",
+          "name": "Type",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Data",
+          "longDescription": "",
+          "name": "Data",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Do something when a event is sent to the client",
+      "fullName": "OnString",
+      "functionType": "Condition",
+      "name": "OnString",
+      "sentence": "On _PARAM1_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var On=eventsFunctionContext.getArgument(\"On\");\nif(GatoSockets.IO!=\"\"){\n  GatoSockets.IO.on(On,(data)=> {\n      GatoSockets.LastData=data\n     GatoSockets.Event=On\n\n  });\n}\nif(GatoSockets.LastData!=\"\"&&GatoSockets.Event==On){\n    eventsFunctionContext.returnValue=true;\n  }",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "On",
+          "longDescription": "",
+          "name": "On",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Do something when a event is sent to the client",
+      "fullName": "On",
+      "functionType": "Condition",
+      "name": "On",
+      "sentence": "On _PARAM1_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var On=eventsFunctionContext.getArgument(\"On\");\nif(GatoSockets.IO!=\"\"){\n  GatoSockets.IO.on(On,(data)=> {\n      GatoSockets.LastData=data\n     GatoSockets.Event=On\n\n  });\n}\nif(GatoSockets.LastData!=\"\"&&GatoSockets.Event==On){\n    eventsFunctionContext.returnValue=true;\n    Event=null;\n  }\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "On",
+          "longDescription": "",
+          "name": "On",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Returns the last data the client received",
+      "fullName": "LastData",
+      "functionType": "StringExpression",
+      "name": "LastData",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "eventsFunctionContext.returnValue=GatoSockets.LastData\r\nsetTimeout(function(){GatoSockets.LastData=\"\";}, 100);\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Return the users ShortID",
+      "fullName": "ShortId",
+      "functionType": "StringExpression",
+      "name": "ShortId",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "eventsFunctionContext.returnValue=GatoSockets.ShortId",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Return the users Socket.id",
+      "fullName": "SocketId",
+      "functionType": "StringExpression",
+      "name": "SocketId",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "eventsFunctionContext.returnValue=GatoSockets.SocketId",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Check if the user is Connected",
+      "fullName": "Connected",
+      "functionType": "Condition",
+      "name": "Connected",
+      "sentence": "is Connected",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "if(GatoSockets.IO!=null&&GatoSockets.IO.connected==true){\n        GatoSockets.SocketId=GatoSockets.IO.id;\n        eventsFunctionContext.returnValue=true;\n    }",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Config the GatoSocketsObj",
+      "fullName": "Config",
+      "functionType": "Action",
+      "name": "Config",
+      "sentence": "Change _PARAM1_ to _PARAM2_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Param1=eventsFunctionContext.getArgument(\"Param\");\nvar Param2=eventsFunctionContext.getArgument(\"Param2\");\nGatoSockets[Param1]=Param2",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Param1",
+          "longDescription": "",
+          "name": "Param",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Param2",
+          "longDescription": "",
+          "name": "Param2",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": []
+}

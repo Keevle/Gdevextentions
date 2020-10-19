@@ -1,0 +1,111 @@
+{
+  "author": "Erigatohishima",
+  "description": "Generates Safe names that players can randomy select\n0.0.2-Upgraded to use the new \"OnFirstSceneLoad\" function",
+  "extensionNamespace": "",
+  "fullName": "GatoSafeNameGen",
+  "name": "GatoSafeNameGen",
+  "shortDescription": "Generates Names",
+  "tags": "Util",
+  "version": "0.0.2",
+  "eventsFunctions": [
+    {
+      "description": "",
+      "fullName": "",
+      "functionType": "Action",
+      "name": "onFirstSceneLoaded",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "\n                window.Gatonamegen={\n                  ib:\"Awesome Formidable Exalted Colorful Frantic Majestic Exuberant Terrible Impressive Adorable Alert Amusing Bored Brave Calm Carefree Careless Chilly Clever Clumsy Cranky Crazy Excited Fantastic Foolish Friendly Fussy Fuzzy Generous Glowing Great Lumpy Messy Mighty Peppy Nimble Blithering Optimistic Plump Polite Proud Quick Quiet Rude Rusty Shining Silly Sizzling Sleepy Slimy Sloppy Smooth Sparkling Speedy Splendid Starving Steaming Stinky Strict Sturdy Surprised Tough Tricky Wild Wise Wonderful Worried Vigorous Delightful Haunted Colossal Vivacious Infuriating Rebellious Slippery Vengeful Fierce Maniacal Affluent Decrepit Glamorous Opulent Saucy Calamitous Egregious Feckless Insidious Irksome Judicious Nefarious Pernicious Petulant Tenacious Famous Flabbergasted Feral Sinister Fresh Adventurous Spoony Noisy Whimsical Amazing Delicate Hairless Classy Gangly Disguised Juicy Ancient Frosty Savage Fiery Enraged Surly Dastardly Cantankerous Freedom Hazardous Dramatic Victory Boisterous Simple Feisty\".split(\" \"),\n                  jb:\"Captain;Pilot;Commander;Squaddie;Scout;Turtle;Fox;Hawk;Falcon;Eagle;Jester;Joker;Potato;Sauce;Ace;Flyer;Driver;Turkey;Chicken;Donkey;Goat;Llama;Antelope;Defender;Weasel;Hedgehog;Koala;Wolf;Groundhog;Stranger;Wolverine;Honey Badger;Chameleon;Cook;Hippie;Boss;Goose;Crawdad;Ham Sandwich;Toaster;Jackhammer;Grandma;Hot Dog;Spoon;Salt Shaker;Wizard;Waistcoat;Shovel;Unicorn;Pinecone;Ninja;Samurai;Cowboy;Buccaneer;Vampire;Werewolf;Pirate;Ogre;Princess;Mentor;Fool;Cactus;Bigfoot;Farmer;Knight;Ghost;Towel;BLT;Sorceror;Dinosaur;Disaster;Baby;Phoenix;Detective;Investigator;Eyeball;Hamster;Toad;Wombat;Worm;Hare;Zombie;Mutant;Mime;Sheriff;Concoction;Toast;Lollipop;Pancake;Milkshake;Plumber;Chainsaw;Ice Cream;Penguin;Hammer;Criminal\".split(\";\"),\n                  Pa:0,\n                  Qa:0,\n                  tc:99,\n                  uc:0,\n                  Qc:\"LOL;EASY!;OOPS!;I DARE YOU!;GOTCHA!;RUN!;TEAM?;YES!;NO!;KILL THE KING!\".split(\";\"),\n                  Ea:0,\n                  randomname:function() {\n                    Gatonamegen.Pa = parseInt(Math.random() * Gatonamegen.ib.length);\n                    Gatonamegen.Qa = parseInt(Math.random() * Gatonamegen.jb.length);\n                    Gatonamegen.Ea += 180;\n                    return Gatonamegen.ib[Gatonamegen.Pa] + \" \" + Gatonamegen.jb[Gatonamegen.Qa]\n                  },\n                  addnewTitle:function(data){\n                     Gatonamegen.jb.push(data)\n                  },\n                  addnewDescriptor:function(data){\n                    Gatonamegen.ib.push(data)\n                  }\n                }",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Gets a Randomly created name ",
+      "fullName": "GetName",
+      "functionType": "StringExpression",
+      "name": "GetName",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "eventsFunctionContext.returnValue=Gatonamegen.randomname()",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Pushes a new Descriptor into the names list",
+      "fullName": "AddNewDescriptor",
+      "functionType": "Action",
+      "name": "AddNewDescriptor",
+      "sentence": "Add _PARAM1_(Descriptor) to names list",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Title=eventsFunctionContext.getArgument(\"Title\")\nGatonamegen.addnewDescriptor(Title);",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "New Dscriptor",
+          "longDescription": "",
+          "name": "Descriptor",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Pushes a new title into the names list",
+      "fullName": "AddNewTitle",
+      "functionType": "Action",
+      "name": "AddNewTitle",
+      "sentence": "Add _PARAM1_(Title) to names list",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Title=eventsFunctionContext.getArgument(\"Title\")\nGatonamegen.addnewTitle(Title);",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "New Title",
+          "longDescription": "",
+          "name": "Title",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": []
+}

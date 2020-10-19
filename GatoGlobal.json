@@ -1,0 +1,488 @@
+{
+  "author": "Erigatohishima",
+  "description": "This adds Global string and array variables that can be utilized in the project,As a alternative to the currently limited Global variables that are built in \n0.0.2-Upgraded to use the new \"OnFirstSceneLoad\" function\n0.0.3-Removed the isArray variable and moved checking to the backend so variables become arrays or normal strings automaticallly based on if a \",\" is used or not\n0.0.4-Add a is number check to correctly translate strings to numbers if they were really numbers,Added a way to easily incriment a value or decriment it\n0.0.5-Alot happend",
+  "extensionNamespace": "",
+  "fullName": "GatoGlobal",
+  "name": "GatoGlobal",
+  "shortDescription": "adds global string and array variables",
+  "tags": "Variable",
+  "version": "0.0.5",
+  "eventsFunctions": [
+    {
+      "description": "",
+      "fullName": "",
+      "functionType": "Action",
+      "name": "onFirstSceneLoaded",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "window.GatoGlobals={}\nGatoGlobals.addnewProperty=function(key,data,over){\n    var obj={};\n    var Key=low(key)\n    var Data=data.toString().split(\",\")\n    if(GatoGlobals[Key] instanceof Array){\n        //The key does not exist\n        if(!GatoGlobals.hasOwnProperty(Key)){\n            if(GatoGlobals.isNumeric(Data)==true){\n                var Dataconverted=Number(Data)\n                obj[Key]=[Dataconverted];\n            }else{\n                obj[Key]=[Data]\n            }\n        //The key does exist\n        }else{\n            if(over==0){\n                for(var i=0;i<data.length;i++){\n                    if(GatoGlobals.isNumeric(data)==true){\n                        var Dataconverted=Number(data)\n                        GatoGlobals[Key].push(Dataconverted[i])\n                    }else{\n                        GatoGlobals[Key].push(data[i])\n                    }\n                    \n                }\n            }else{\n                if(GatoGlobals.isNumeric(data)==true){\n                    var Dataconverted=Number(data)\n                    GatoGlobals[Key]=Dataconverted\n                }else{\n                    GatoGlobals[Key]=data\n                }               \n            }\n\n        }\n    }else{\n        if(GatoGlobals.isNumeric(data)==true){\n            obj[Key]=Number(data)\n        }else{\n            obj[Key]=data\n        }\n        \n    }\n    $.extend(GatoGlobals,obj);\n}\n\nGatoGlobals.getProperty = function (key,index,all) {\n    if(GatoGlobals[low(key)] instanceof Array){\n        if(all==1){\n            return GatoGlobals[low(key)]\n        }else{\n            return GatoGlobals[low(key)][index]\n        }\n    }else{\n        return GatoGlobals[low(key)]\n\n        \n    } \n};\n  \nGatoGlobals.removeProperty=function(key,index){\n    if(GatoGlobals[key.toLowerCase()] instanceof Array){\n        if(index==-1){\n            GatoGlobals[key.toLowerCase()][0].length=0\n        }else{\n            GatoGlobals[key.toLowerCase()].splice(index,1)\n        }\n    }else{\n        delete GatoGlobals[key.toLowerCase()];\n    }\n    \n}\n\nGatoGlobals.modifyProperty=function(key,index,value){\n    if(GatoGlobals[key.toLowerCase()] instanceof Array){\n        GatoGlobals[key.toLowerCase()][index]=value\n    }else{\n        GatoGlobals[key.toLowerCase()]=value\n    }\n}\n\nGatoGlobals.incrimentValue=function(key,index,value){\n     if(GatoGlobals[low(key)] instanceof Array){\n        var _baseincrimental=GatoGlobals[low(key)][index]\n        GatoGlobals[low(key)][index]=_baseincrimental+value\n    }else{\n        var _baseincrimental=GatoGlobals[key.toLowerCase()]\n        GatoGlobals[key.toLowerCase()]=_baseincrimental+value\n    }   \n}\n\nGatoGlobals.Dicriment=function(key,index,value){\n     if(GatoGlobals[low(key)] instanceof Array){\n        var _baseincrimental=GatoGlobals[low(key)][index]\n        GatoGlobals[low(key)][index]=_baseincrimental-value\n    }else{\n        var _baseincrimental=GatoGlobals[key.toLowerCase()]\n        GatoGlobals[key.toLowerCase()]=_baseincrimental-value\n    }   \n}\n\nGatoGlobals.IncriMentPlusValue=function(key,index,value,otherindex){\n        var OtherIndexValue=GatoGlobals[low(key)][otherindex]\n        var Index=GatoGlobals[low(key)][index];\n        GatoGlobals[low(key)][otherindex]=Index+=value\n}\n\nwindow.low=function(a){\n    return a.toString().toLowerCase();\n}\n\nGatoGlobals.isNumeric=function(val) {\n    var _val = +val;\n    return (val !== val + 1) //infinity check\n        && (_val === +val) //Cute coercion check\n        && (typeof val !== 'object') //Array/object check\n}\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Deletes the property of a global ",
+      "fullName": "DeleteProperty",
+      "functionType": "Action",
+      "name": "DeleteProperty",
+      "sentence": "Delete Key: _PARAM1_ Data:_PARAM2_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Key=eventsFunctionContext.getArgument(\"Key\");\r\nvar Data=eventsFunctionContext.getArgument(\"Data\");\r\nGatoGlobals.removeProperty(Key,Data)\r\n\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Key",
+          "longDescription": "",
+          "name": "Key",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Data",
+          "longDescription": "",
+          "name": "Data",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Get a property out of a global array or key",
+      "fullName": "GetProperty",
+      "functionType": "Action",
+      "name": "GetProperty",
+      "sentence": "Get Key: _PARAM1_ Data:_PARAM2_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Key=eventsFunctionContext.getArgument(\"Key\");\r\nvar Data=eventsFunctionContext.getArgument(\"Data\");\r\nvar All=eventsFunctionContext.getArgument(\"All\")\r\nGatoGlobals.lastproperty=GatoGlobals.getProperty(Key,Data,All)\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Key",
+          "longDescription": "",
+          "name": "Key",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Data",
+          "longDescription": "",
+          "name": "Data",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Get the entire array or not",
+          "longDescription": "",
+          "name": "All",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Make the other index always equal to the variable from the first index+ a value",
+      "fullName": "PlusIndexValue",
+      "functionType": "Action",
+      "name": "PlusIndexValue",
+      "sentence": "Plus _PARAM1_ at index _PARAM2_ using value _PARAM3_ to _PARAM4_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Key=eventsFunctionContext.getArgument(\"Key\");\r\nvar Index=eventsFunctionContext.getArgument(\"Index\");\r\nvar Value=eventsFunctionContext.getArgument(\"Value\");\r\nvar OtherIndex=eventsFunctionContext.getArgument(\"OtherIndex\");\r\nGatoGlobals.IncriMentPlusValue(Key,Index,Value,OtherIndex);\r\n    \r\n\r\n\r\n\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Key",
+          "longDescription": "",
+          "name": "Key",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "index",
+          "longDescription": "",
+          "name": "Index",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Value",
+          "longDescription": "",
+          "name": "Value",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Otherindex",
+          "longDescription": "",
+          "name": "OtherIndex",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Incriment the value of a key",
+      "fullName": "Incriment",
+      "functionType": "Action",
+      "name": "Incriment",
+      "sentence": "Incriment Key: _PARAM1_ at _PARAM2_ by _PARAM3_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Key=eventsFunctionContext.getArgument(\"Key\");\r\nvar Index=eventsFunctionContext.getArgument(\"Index\");\r\nvar Value=eventsFunctionContext.getArgument(\"Value\");\r\nGatoGlobals.incrimentValue(Key,Index,Value);\r\n    \r\n\r\n\r\n\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Key",
+          "longDescription": "",
+          "name": "Key",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "index",
+          "longDescription": "",
+          "name": "Index",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Value",
+          "longDescription": "",
+          "name": "Value",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Dicriment the value of a key",
+      "fullName": "Dicriment",
+      "functionType": "Action",
+      "name": "Dicriment",
+      "sentence": "Dicriment Key: _PARAM1_ at _PARAM2_ by _PARAM3_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Key=eventsFunctionContext.getArgument(\"Key\");\r\nvar Index=eventsFunctionContext.getArgument(\"Index\");\r\nvar Value=eventsFunctionContext.getArgument(\"Value\");\r\nGatoGlobals.Dicriment(Key,Index,Value);\r\n    \r\n\r\n\r\n\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Key",
+          "longDescription": "",
+          "name": "Key",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "index",
+          "longDescription": "",
+          "name": "Index",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Value",
+          "longDescription": "",
+          "name": "Value",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Modify the value of a global property",
+      "fullName": "ModifyProperty",
+      "functionType": "Action",
+      "name": "modifyProperty",
+      "sentence": "Modify Key: _PARAM1_ at _PARAM2_ to _PARAM3_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Key=eventsFunctionContext.getArgument(\"Key\");\r\nvar Index=eventsFunctionContext.getArgument(\"Index\");\r\nvar Value=eventsFunctionContext.getArgument(\"Value\");\r\nif(GatoGlobals.isNumeric(Value.toString().substr(0,1))==true){\r\n    GatoGlobals.modifyProperty(Key,Index,Number(Value))\r\n}else{\r\n    GatoGlobals.modifyProperty(Key,Index,Value);\r\n}\r\n    \r\n\r\n\r\n\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Key",
+          "longDescription": "",
+          "name": "Key",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "index",
+          "longDescription": "",
+          "name": "Index",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "String value",
+          "longDescription": "",
+          "name": "Value",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Add a new Global Property",
+      "fullName": "AddNewProperty",
+      "functionType": "Action",
+      "name": "AddNewProperty",
+      "sentence": "Add Key: _PARAM1_ Data [_PARAM2_]",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Key=eventsFunctionContext.getArgument(\"Key\");\r\nvar Data=eventsFunctionContext.getArgument(\"Data\");\r\nif(GatoGlobals.isNumeric(Data.toString().substr(0,1))==true){//If a array has numbers convert all of the strings to numbers\r\n    if(Data.toString().includes(\",\")){\r\n        GatoGlobals.addnewProperty(Key,Data.split(\",\").map(Number),0)\r\n    }else{\r\n        GatoGlobals.addnewProperty(Key,Number(Data),0)\r\n    }\r\n}else{\r\n    if(Data.toString().includes(\",\")){//if a array is just strings keep em normal\r\n      GatoGlobals.addnewProperty(Key,Data.split(\",\"),0)  \r\n    }else{\r\n        GatoGlobals.addnewProperty(Key,Data,0)\r\n    }\r\n}\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Key",
+          "longDescription": "",
+          "name": "Key",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Data",
+          "longDescription": "",
+          "name": "Data",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "",
+      "fullName": "",
+      "functionType": "Condition",
+      "name": "Ready",
+      "sentence": "Globals is Ready",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "\r\nif (typeof GatoGlobals === \"undefined\") {\r\n    console.log(\"Still loading\");\r\n}else{\r\n    eventsFunctionContext.returnValue=true\r\n}",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Return last data of the last Get property action",
+      "fullName": "LastProperty",
+      "functionType": "StringExpression",
+      "name": "LastProperty",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "eventsFunctionContext.returnValue=GatoGlobals.lastproperty\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Returns the Given property",
+      "fullName": "GetProp",
+      "functionType": "StringExpression",
+      "name": "GetProp",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Data=eventsFunctionContext.getArgument(\"Data\");\nvar Key=GatoUtil.tokenat(Data,0,\"_\")\nvar Index=Number(GatoUtil.tokenat(Data,1,\"_\"))\nvar All=Number(GatoUtil.tokenat(Data,2,\"_\"))\n\n if(All==null)\n {\n     eventsFunctionContext.returnValue=GatoGlobals.getProperty(Key,Index,0)\n     \n}\n\n if(Index==null)\n {\n     eventsFunctionContext.returnValue=GatoGlobals.getProperty(Key,0,All)\n     \n}\n if(All==2)\n {\n     eventsFunctionContext.returnValue=GatoGlobals.getProperty(Key,0,1)\n     \n}\n if(All!==null&&Index!==null&&All!==2)\n {\n     eventsFunctionContext.returnValue=GatoGlobals.getProperty(Key,Index,All)\n     \n}\n ",
+          "parameterObjects": "",
+          "useStrict": true
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "",
+          "longDescription": "",
+          "name": "Data",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Overwrite a key with new data",
+      "fullName": "",
+      "functionType": "Action",
+      "name": "OverwriteProperty",
+      "sentence": "Overwrite _PARAM1_ with _PARAM2_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Key=eventsFunctionContext.getArgument(\"Key\");\nvar Data=eventsFunctionContext.getArgument(\"Data\")\nif(GatoGlobals.isNumeric(Data.toString().substr(0,1))==true){//If a array has numbers convert all of the strings to numbers\n    if(Data.toString().includes(\",\")){\n        GatoGlobals.addnewProperty(Key,Data.split(\",\").map(Number),1)\n    }else{\n        GatoGlobals.addnewProperty(Key,Number(Data),1)\n    }\n}else{\n    if(Data.toString().includes(\",\")){//if a array is just strings keep em normal\n      GatoGlobals.addnewProperty(Key,Data.split(\",\"),1)  \n    }else{\n        GatoGlobals.addnewProperty(Key,Data,1)\n    }\n}\n\n\n\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Key to access",
+          "longDescription": "",
+          "name": "Key",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Data to use",
+          "longDescription": "",
+          "name": "Data",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": []
+}

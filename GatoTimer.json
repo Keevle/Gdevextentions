@@ -1,0 +1,202 @@
+{
+  "author": "Erigatohishima",
+  "description": "Adds a global timer to the game that is tab independent\n0.0.2-Fixed the issue causing that null error when the timer finished repeating,Added a \"IsRunning\" condition so you can do certain logic while a timer of yours is running",
+  "extensionNamespace": "",
+  "fullName": "GatoTimer",
+  "name": "GatoTimer",
+  "shortDescription": "Adds a global timer",
+  "tags": "Timer",
+  "version": "0.0.2",
+  "eventsFunctions": [
+    {
+      "description": "",
+      "fullName": "",
+      "functionType": "Action",
+      "name": "onFirstSceneLoaded",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "window.GatoTimer={\n    StoredTime:[]\n}\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Start a timer and make it repeate a number of times",
+      "fullName": "Start Timer",
+      "functionType": "Action",
+      "name": "StartTimer",
+      "sentence": "Start a _PARAM1_ timer for _PARAM2_ seconds  (Repeat: _PARAM3_)",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Tag=eventsFunctionContext.getArgument(\"Tag\");\nvar Time=eventsFunctionContext.getArgument(\"Time\");\nvar Repeat=eventsFunctionContext.getArgument(\"Repeat\");\nfunction SetTimer(tag,time,repeat){\n    GatoTimer.StoredTime[tag]={\n            isReady: false,\n            interval: time,\n            repeatsLeft: repeat,\n            repeated:false,\n            startTime: (new Date()).getTime(),\n            id: null\n        }\n    GatoTimer.StoredTime[tag].id=setTimeout(function()\n    {\n        GatoTimer.StoredTime[tag].isReady=true\n\n        GatoTimer.StoredTime[tag].isOriginal=true\n\n        if(!GatoTimer.StoredTime[tag].isOriginal) return\n        --GatoTimer.StoredTime[tag].repeatsLeft\n        \n\n        if(GatoTimer.StoredTime[tag].repeatsLeft<=0){\n            GatoTimer.StoredTime[tag]=null;\n        }else{\n            \n            SetTimer(tag,time,GatoTimer.StoredTime[tag].repeatsLeft);\n            setTimeout(function() {GatoTimer.StoredTime[tag].repeated=true},100);\n            \n        }\n    },GatoTimer.StoredTime[tag].interval * 1000);        \n}\nSetTimer(Tag,Time,Repeat)\n\n\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Timer",
+          "longDescription": "",
+          "name": "Tag",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Time",
+          "longDescription": "",
+          "name": "Time",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Repeats",
+          "longDescription": "",
+          "name": "Repeat",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Called when the timer repeats",
+      "fullName": "TimerRepeat",
+      "functionType": "Condition",
+      "name": "TimerRepeat",
+      "sentence": "Timer _PARAM1_ is repeated",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var ID=eventsFunctionContext.getArgument(\"Timer\");\nif(typeof GatoTimer.StoredTime[ID]!== 'undefined'&&GatoTimer.StoredTime[ID]!== null &&GatoTimer.StoredTime[ID].repeated==true)\n\t\t{\n\t\t\t\n\t\t\teventsFunctionContext.returnValue=true\n\t\t}",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Timer",
+          "longDescription": "",
+          "name": "Timer",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Called when the timer is done",
+      "fullName": "TimerDone",
+      "functionType": "Condition",
+      "name": "TimerDone",
+      "sentence": "Timer _PARAM1_ is done",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var ID=eventsFunctionContext.getArgument(\"Timer\");\nif(typeof GatoTimer.StoredTime[ID]!== 'undefined' &&GatoTimer.StoredTime[ID]== null)\n\t\t{\n\t\t\tdelete GatoTimer.StoredTime[ID]\n\t\t\teventsFunctionContext.returnValue=true\n\t\t}",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Timer",
+          "longDescription": "",
+          "name": "Timer",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Time left for a timer",
+      "fullName": "TimeLeft",
+      "functionType": "Expression",
+      "name": "TimeLeft",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Tag=eventsFunctionContext.getArgument(\"Tag\");\nfunction Timeleft(tag,seconds){\n     if(typeof GatoTimer.StoredTime[tag] === 'undefined' || ! GatoTimer.StoredTime[tag])\n        {\n            eventsFunctionContext.returnValue=-1;\n            return;\n        }\n        var timeDiff = (new Date()).getTime() - GatoTimer.StoredTime[tag].startTime;\n        var remainingTime = GatoTimer.StoredTime[tag].interval * 1000 - timeDiff;\n        eventsFunctionContext.returnValue=(seconds === 0 ? remainingTime : remainingTime / 1000|0)\n}\n\n\nTimeleft(Tag)",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Tag",
+          "longDescription": "",
+          "name": "Tag",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Check if the timer is still running",
+      "fullName": "TimerIsRunning",
+      "functionType": "Condition",
+      "name": "TimeIsRunning",
+      "sentence": "Timer _PARAM1_ is running",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var ID=eventsFunctionContext.getArgument(\"Timer\");\nif(typeof GatoTimer.StoredTime[ID]!== 'undefined' &&GatoTimer.StoredTime[ID]!== null)\n\t\t{\n\t\t\teventsFunctionContext.returnValue=true\n\t\t}",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Timer",
+          "longDescription": "",
+          "name": "Timer",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": []
+}

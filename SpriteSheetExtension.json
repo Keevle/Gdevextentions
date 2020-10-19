@@ -1,0 +1,757 @@
+{
+  "author": "Maxwell Coffey",
+  "description": "This behavior will allow you to use sprite sheets. Using the Play Animation action you can set the row, first frame, last frame, and speed of the animation. You can also set an idetifying number as well as a grouping number. You can also set a single frame. \nThis only works for Tiled Sprite objects!\nSome things to keep in mind while using this\nFirst is that you have to start at 0. For example the first row of the sheet is considered row 0.\nSecond is that The animation HAS to be on the same Row, but multiple animations can be on the same row!\nThird is that If there is spacing, it has to be consitant through out the entire sprite sheet.",
+  "extensionNamespace": "",
+  "fullName": "Sprite Sheet",
+  "name": "SpriteSheet",
+  "shortDescription": "Using a Tiled Sprite Object, you will be able to use a sprite sheet with custom sizes and spaces!\n",
+  "tags": "sprite sheet, sprite, animation",
+  "version": "2.0",
+  "eventsFunctions": [],
+  "eventsBasedBehaviors": [
+    {
+      "description": "Select the Row, First frame, Last frame, and Speed to animate your sheet!\nYou can also asign a group and an identifying number.",
+      "fullName": "Sprite Sheet Animation",
+      "name": "SpriteSheet",
+      "objectType": "TiledSpriteObject::TiledSprite",
+      "eventsFunctions": [
+        {
+          "description": "Play an animation for your sprite sheet.",
+          "fullName": "Play Animation",
+          "functionType": "Action",
+          "name": "PlayAnimaition",
+          "sentence": "Play Animation of _PARAM0_ On row _PARAM5_ From frames _PARAM2_ to _PARAM3_ at speed _PARAM4_. Identify as _PARAM6_ in group _PARAM7_",
+          "events": [
+            {
+              "colorB": 228,
+              "colorG": 176,
+              "colorR": 74,
+              "creationTime": 0,
+              "disabled": false,
+              "folded": true,
+              "name": "Change Settings",
+              "source": "",
+              "type": "BuiltinCommonInstructions::Group",
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyAnimationRow"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"AnimationRow\")"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyAnimationSpeed"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"AnimationSpeed\")"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyFirstFrame"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"FirstFrame\")"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyLastFrame"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"LastFrame\")"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyAnimNum"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"AnimationNum\")"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyAnimGroup"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"AnimGroup\")"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ],
+              "parameters": []
+            },
+            {
+              "colorB": 228,
+              "colorG": 176,
+              "colorR": 74,
+              "creationTime": 0,
+              "disabled": false,
+              "folded": true,
+              "name": "Change Frame",
+              "source": "",
+              "type": "BuiltinCommonInstructions::Group",
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Timer"
+                      },
+                      "parameters": [
+                        "",
+                        "Object.Behavior::PropertyAnimationSpeed()",
+                        "Object.ObjectName()+\"Sprite \"+Object.Behavior::PropertyAnimationName()+\"timer\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "TiledSpriteObject::YOffset"
+                      },
+                      "parameters": [
+                        "Object",
+                        "=",
+                        "((Object.Behavior::PropertyAnimationRow())*(Object.Behavior::PropertySpriteY()))+(((Object.Behavior::PropertyAnimationRow())*Object.Behavior::PropertySpriteSpacing())+Object.Behavior::PropertySpriteSpacing())"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyCurrentFrame"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "+",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "TiledSpriteObject::XOffset"
+                      },
+                      "parameters": [
+                        "Object",
+                        "=",
+                        "\n((Object.Behavior::PropertyFirstFrame()+Object.Behavior::PropertyCurrentFrame())*Object.Behavior::PropertySpriteX())+\n\n\n(((Object.Behavior::PropertyFirstFrame()+Object.Behavior::PropertyCurrentFrame())*Object.Behavior::PropertySpriteSpacing())+Object.Behavior::PropertySpriteSpacing())\n"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ResetTimer"
+                      },
+                      "parameters": [
+                        "",
+                        "Object.ObjectName()+\"Sprite \"+Object.Behavior::PropertyAnimationName()+\"timer\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "SpriteSheet::SpriteSheet::PropertyCurrentFrame"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            ">=",
+                            "(Object.Behavior::PropertyLastFrame()-Object.Behavior::PropertyFirstFrame())+1"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "SpriteSheet::SpriteSheet::SetPropertyCurrentFrame"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "=",
+                            "0"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "TiledSpriteObject::XOffset"
+                          },
+                          "parameters": [
+                            "Object",
+                            "=",
+                            "\n((Object.Behavior::PropertyFirstFrame()+Object.Behavior::PropertyCurrentFrame())*Object.Behavior::PropertySpriteX())+\n\n\n(((Object.Behavior::PropertyFirstFrame()+Object.Behavior::PropertyCurrentFrame())*Object.Behavior::PropertySpriteSpacing())+Object.Behavior::PropertySpriteSpacing())\n"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
+                }
+              ],
+              "parameters": []
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "TiledSpriteObject::TiledSprite",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "SpriteSheet::SpriteSheet",
+              "type": "behavior"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "First Frame of the animation",
+              "name": "FirstFrame",
+              "optional": false,
+              "supplementaryInformation": "SpriteSheet::SpriteSheetSingleAnimation",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Last Frame of animation",
+              "name": "LastFrame",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Speed in Seconds of the animation",
+              "name": "AnimationSpeed",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "What row is the animation in",
+              "name": "AnimationRow",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Identify The Animation",
+              "name": "AnimationNum",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Group the animation",
+              "name": "AnimGroup",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Set the frame for the object",
+          "fullName": "Set Frame",
+          "functionType": "Action",
+          "name": "SetFrame",
+          "sentence": "Set Frame of _PARAM0_ to Collumn _PARAM2_ Row _PARAM3_ . Identify as _PARAM4_ in group _PARAM5_",
+          "events": [
+            {
+              "colorB": 228,
+              "colorG": 176,
+              "colorR": 74,
+              "creationTime": 0,
+              "disabled": false,
+              "folded": true,
+              "name": "Change Settings",
+              "source": "",
+              "type": "BuiltinCommonInstructions::Group",
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": true,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyAnimationRow"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"AnimationRow\")"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyFirstFrame"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"FirstFrame\")"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyAnimGroup"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"AnimGroup\")"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SpriteSheet::SpriteSheet::SetPropertyAnimNum"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"AnimationNum\")"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": [
+                    {
+                      "colorB": 228,
+                      "colorG": 176,
+                      "colorR": 74,
+                      "creationTime": 0,
+                      "disabled": false,
+                      "folded": true,
+                      "name": "Change Frame",
+                      "source": "",
+                      "type": "BuiltinCommonInstructions::Group",
+                      "events": [
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "TiledSpriteObject::YOffset"
+                              },
+                              "parameters": [
+                                "Object",
+                                "=",
+                                "((Object.Behavior::PropertyAnimationRow())*(Object.Behavior::PropertySpriteY()))+(((Object.Behavior::PropertyAnimationRow())*Object.Behavior::PropertySpriteSpacing())+Object.Behavior::PropertySpriteSpacing())"
+                              ],
+                              "subInstructions": []
+                            },
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "TiledSpriteObject::XOffset"
+                              },
+                              "parameters": [
+                                "Object",
+                                "=",
+                                "\n((Object.Behavior::PropertyFirstFrame()+Object.Behavior::PropertyCurrentFrame())*Object.Behavior::PropertySpriteX())+\n\n\n(((Object.Behavior::PropertyFirstFrame()+Object.Behavior::PropertyCurrentFrame())*Object.Behavior::PropertySpriteSpacing())+Object.Behavior::PropertySpriteSpacing())\n"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        }
+                      ],
+                      "parameters": []
+                    }
+                  ]
+                }
+              ],
+              "parameters": []
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "TiledSpriteObject::TiledSprite",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "SpriteSheet::SpriteSheet",
+              "type": "behavior"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "What Collumn is the frame",
+              "name": "FrameCollumn",
+              "optional": false,
+              "supplementaryInformation": "SpriteSheet::SpriteSheetSingleAnimation",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "What row is the frame",
+              "name": "AnimationRow",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Identify The Frame",
+              "name": "AnimationNum",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Group the animation",
+              "name": "AnimGroup",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "The Current Frame of animation",
+          "fullName": "Current Frame",
+          "functionType": "Expression",
+          "name": "CurrentFrame",
+          "sentence": "If Current Frame of _PARAM0_ = _PARAM2_",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetReturnNumber"
+                  },
+                  "parameters": [
+                    "Object.Behavior::PropertyCurrentFrame()"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "TiledSpriteObject::TiledSprite",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "SpriteSheet::SpriteSheet",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "What group is the animation",
+          "fullName": "Current Group",
+          "functionType": "Expression",
+          "name": "CurrentGroup",
+          "sentence": "",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetReturnNumber"
+                  },
+                  "parameters": [
+                    "Object.Behavior::PropertyAnimGroup()"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "TiledSpriteObject::TiledSprite",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "SpriteSheet::SpriteSheet",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "What animation is playing",
+          "fullName": "Current Animation",
+          "functionType": "Expression",
+          "name": "CurrentAnim",
+          "sentence": "",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetReturnNumber"
+                  },
+                  "parameters": [
+                    "Object.Behavior::PropertyAnimNum()"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "TiledSpriteObject::TiledSprite",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "SpriteSheet::SpriteSheet",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        }
+      ],
+      "propertyDescriptors": [
+        {
+          "value": "16",
+          "type": "Number",
+          "label": "What is the X scale of the sprite (in pixels)",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "SpriteX"
+        },
+        {
+          "value": "16",
+          "type": "Number",
+          "label": "What is the Y scale of the sprite (in pixels)",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "SpriteY"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "What's the space between each sprite (in pixels)",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "SpriteSpacing"
+        },
+        {
+          "value": "1",
+          "type": "Number",
+          "label": "Speed of the animation (in seconds)",
+          "extraInformation": [],
+          "hidden": true,
+          "name": "AnimationSpeed"
+        },
+        {
+          "value": "1",
+          "type": "Number",
+          "label": "The row of the animation",
+          "extraInformation": [],
+          "hidden": true,
+          "name": "AnimationRow"
+        },
+        {
+          "value": "1",
+          "type": "Number",
+          "label": "First Frame of the animation",
+          "extraInformation": [],
+          "hidden": true,
+          "name": "FirstFrame"
+        },
+        {
+          "value": "1",
+          "type": "Number",
+          "label": "Last Frame of the animation",
+          "extraInformation": [],
+          "hidden": true,
+          "name": "LastFrame"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "Current Frame of the animation",
+          "extraInformation": [],
+          "hidden": true,
+          "name": "CurrentFrame"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "Identity of the animation",
+          "extraInformation": [],
+          "hidden": true,
+          "name": "AnimNum"
+        },
+        {
+          "value": "0",
+          "type": "Number",
+          "label": "Group of the animation",
+          "extraInformation": [],
+          "hidden": true,
+          "name": "AnimGroup"
+        }
+      ]
+    }
+  ]
+}

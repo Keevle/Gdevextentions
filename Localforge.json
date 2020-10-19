@@ -1,0 +1,178 @@
+{
+  "author": "Erigatohishima",
+  "description": "Localforage wrapper plugin that adds an efficent encryption system for saving data",
+  "extensionNamespace": "",
+  "fullName": "Localforge",
+  "name": "Localforge",
+  "shortDescription": "Nice local storage alternative that has multiple fallbacks",
+  "tags": "Savedata",
+  "version": "0.0.1",
+  "eventsFunctions": [
+    {
+      "description": "",
+      "fullName": "",
+      "functionType": "Action",
+      "name": "onFirstSceneLoaded",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "window.Gatoforge={\r\n    lastdata:\"\",\r\n    stateloaded:0\r\n}",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Loads the entire saved game object",
+      "fullName": "LoadFullState",
+      "functionType": "Action",
+      "name": "LoadFullState",
+      "sentence": "Load full state",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "\nlocalforage.getItem('Game'+gdjs.projectData.properties[\"name\"]).then(function(value) {\n    var obj={}\n    obj=JSON.parse(gdjs.you(value.toString(),gdjs.timeofday))\n    $.extend(GatoGlobals,obj);\n    Gatoforge.stateloaded=1\n}).catch(function(err) {\n    console.log(err);\n});\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Saves the entire Gatoglobals object to a storage key unique to the game",
+      "fullName": "SaveFullState",
+      "functionType": "Action",
+      "name": "SaveFullState",
+      "sentence": "Save full State",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "\nlocalforage.setItem('Game'+gdjs.projectData.properties[\"name\"],gdjs.hi(JSON.stringify(GatoGlobals),gdjs.timeofday)).then(function (value) {\n    console.log(value);\n}).catch(function(err) {\n    console.log(err);\n});\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Set the key and data of a localforage item",
+      "fullName": "SetItem",
+      "functionType": "Action",
+      "name": "SetItem",
+      "sentence": "Set item _PARAM1_ with data _PARAM2_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Key=eventsFunctionContext.getArgument(\"Key\");\nvar Data=eventsFunctionContext.getArgument(\"Data\");\n\nlocalforage.setItem(Key,gdjs.hi(Data,gdjs.timeofday)).then(function (value) {\n    console.log(value);\n}).catch(function(err) {\n    console.log(err);\n});\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Key",
+          "longDescription": "",
+          "name": "Key",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Data",
+          "longDescription": "",
+          "name": "Data",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Gets the key of a localforage item",
+      "fullName": "GetItem",
+      "functionType": "Action",
+      "name": "GetItem",
+      "sentence": "Get _PARAM1_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "var Key=eventsFunctionContext.getArgument(\"Key\");\nlocalforage.getItem(Key).then(function(value) {\n    var foo=gdjs.you(value.toString(),gdjs.timeofday)\n    Gatoforge.lastdata=foo\n}).catch(function(err) {\n    console.log(err);\n});",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Key",
+          "longDescription": "",
+          "name": "Key",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Return the last data from the most recent Get localforage action",
+      "fullName": "LastData",
+      "functionType": "StringExpression",
+      "name": "LastData",
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "if(Gatoforge.hasOwnProperty(\"lastdata\")){\r\n    eventsFunctionContext.returnValue=Gatoforge.lastdata\r\n}",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Checks if the game state is finished loading",
+      "fullName": "StateLoaded",
+      "functionType": "Condition",
+      "name": "StateLoaded",
+      "sentence": "StateLoaded",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "if(Gatoforge.stateloaded==1){\r\n    eventsFunctionContext.returnValue=1\r\n}else{\r\n    eventsFunctionContext.returnValue=0\r\n}\r\n",
+          "parameterObjects": "",
+          "useStrict": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": []
+}
